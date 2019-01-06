@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+if ($_SERVER["REMOTE_ADDR"] == "192.168.33.17") {
+    $url = "http://shop101.advws.org";
+} else {
+    $url = "http://192.168.0.98:8000";
+}
+?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,12 +16,12 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="<?= "{$url}/password/email" ?>">
                         @csrf
 
                         <div class="form-group row">
@@ -24,9 +31,9 @@
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>

@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+if ($_SERVER["REMOTE_ADDR"] == "192.168.33.17") {
+    $url = "http://shop101.advws.org";
+} else {
+    $url = "http://192.168.0.98:8000";
+}
+?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,7 +15,7 @@
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+                    <form method="POST" action="<?= "{$url}/password/update" ?>">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -20,9 +27,9 @@
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
@@ -34,9 +41,9 @@
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>
