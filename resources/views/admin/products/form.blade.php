@@ -1,3 +1,4 @@
+
 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
     <label for="title" class="control-label">{{ 'Title' }}</label>
     <input class="form-control" name="title" type="text" id="title" value="{{ isset($product->title) ? $product->title : ''}}" >
@@ -10,13 +11,10 @@
 </div>
 <div class="form-group {{ $errors->has('category') ? 'has-error' : ''}}">
     <label for="category" class="control-label">{{ 'Category' }}</label>
-    <select name="category" class="form-control" id="category" >
-        <?php
-        $category = array("technology" => "Technology", "tips" => "Tips", "health" => "Health");
-        foreach ($category as $key => $value) {
-            ?>
-            <option value="<?= $key ?>"><?= $value ?></option>
-        <?php } ?>
+    <select name="category_id" class="form-control" id="category" >
+        @foreach($categorys as $item)
+        <option value="{{ $item->id }}">{{ $item->name }}</option>
+        @endforeach
     </select>
     {!! $errors->first('category', '<p class="help-block">:message</p>') !!}
 </div>

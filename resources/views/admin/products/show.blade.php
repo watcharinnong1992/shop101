@@ -34,7 +34,7 @@ if ($_SERVER["REMOTE_ADDR"] == "192.168.33.17") {
                                 <tr>
                                     <th>ID</th><td>{{ $product->id }}</td>
                                 </tr>
-                                <tr><th> Title </th><td> {{ $product->title }} </td></tr><tr><th> Content </th><td> {{ $product->content }} </td></tr><tr><th> Category </th><td> {{ $product->category }} </td></tr>
+                                <tr><th> Title </th><td> {{ $product->title }} </td></tr><tr><th> Content </th><td> {{ $product->content }} </td></tr><tr><th> Category </th><td> {{ $product->category->name }} </td></tr>
                             </tbody>
                         </table>
                     </div>

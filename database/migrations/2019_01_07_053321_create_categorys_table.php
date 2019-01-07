@@ -3,21 +3,21 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProductsTable extends Migration {
-
+class CreateCategorysTable extends Migration
+{
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
-        Schema::create('products', function (Blueprint $table) {
+    public function up()
+    {
+        Schema::create('categorys', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
             $table->timestamps();
-            $table->string('title')->nullable();
+            $table->string('name')->nullable();
             $table->text('content')->nullable();
-        });
+            });
     }
 
     /**
@@ -25,8 +25,8 @@ class CreateProductsTable extends Migration {
      *
      * @return void
      */
-    public function down() {
-        Schema::drop('products');
+    public function down()
+    {
+        Schema::drop('categorys');
     }
-
 }

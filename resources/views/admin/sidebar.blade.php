@@ -23,7 +23,7 @@ if ($_SERVER["REMOTE_ADDR"] == "192.168.33.17") {
 
             <ul class="nav" role="tablist">
                 <li role="presentation">
-                    <a href="#">
+                    <a href="<?= "{$url}/admin/categorys" ?>">
                         Category
                     </a>
                 </li>

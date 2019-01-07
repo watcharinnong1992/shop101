@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller {
@@ -25,7 +26,7 @@ class ProductsController extends Controller {
         if (!empty($keyword)) {
             $products = Product::where('title', 'LIKE', "%$keyword%")
                             ->orWhere('content', 'LIKE', "%$keyword%")
-                            ->orWhere('category', 'LIKE', "%$keyword%")
+                            ->orWhere('category_id', 'LIKE', "%$keyword%")
                             ->latest()->paginate($perPage);
         } else {
             $products = Product::latest()->paginate($perPage);
@@ -40,7 +41,8 @@ class ProductsController extends Controller {
      * @return \Illuminate\View\View
      */
     public function create() {
-        return view('admin.products.create');
+        $categorys = Category::latest()->paginate();
+        return view('admin.products.create', compact('categorys'));
     }
 
     /**
@@ -69,6 +71,7 @@ class ProductsController extends Controller {
     public function show($id) {
         $product = Product::findOrFail($id);
 
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -81,8 +84,9 @@ class ProductsController extends Controller {
      */
     public function edit($id) {
         $product = Product::findOrFail($id);
+        $categorys = Category::latest()->paginate();
 
-        return view('admin.products.edit', compact('product'));
+        return view('admin.products.edit', compact('product', 'categorys'));
     }
 
     /**
