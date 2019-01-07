@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductsRequest;
 
 class ProductsController extends Controller {
 
@@ -52,7 +53,7 @@ class ProductsController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request) {
+    public function store(StoreProductsRequest $request) {
 
         $requestData = $request->all();
 
@@ -97,7 +98,7 @@ class ProductsController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id) {
+    public function update(StoreProductsRequest $request, $id) {
 
         $requestData = $request->all();
 
